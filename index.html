@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>FULL SCREEN </title>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <div id="arrow-left" class="arrow"></div>
+      <div id="slider">
+        <div class="slide slide1" onclick="document.getElementById('audio_play0').play(); return false;">
+          <div class="slide-content">
+           </div>
+        </div>
+         <div class="slide slide2" onclick="document.getElementById('audio_play0').pause(); document.getElementById('audio_play1').play(); return false;">
+           <div class="slide-content">
+            </div>
+         </div>
+         <div class="slide slide3" onclick="document.getElementById('audio_play1').pause(); document.getElementById('audio_play2').play(); return false;" >
+           <div class="slide-content">
+            </div>
+         </div>
+         <div class="slide slide4" onclick="document.getElementById('audio_play2').pause(); document.getElementById('audio_play3').play(); return false;">
+           <div class="slide-content">
+            </div>
+         </div>
+         <div class="slide slide5" onclick="document.getElementById('audio_play3').pause(); document.getElementById('audio_play4').play(); return false;">
+           <div class="slide-content">
+           </div>
+         </div>
+         <div class="slide slide6" onclick="document.getElementById('audio_play4').pause(); document.getElementById('audio_play5').play(); return false;">
+           <div class="slide-content">
+           </div>
+         </div>
+         <div class="slide slide7" onclick="document.getElementById('audio_play5').pause(); document.getElementById('audio_play6').play(); return false;">
+           <div class="slide-content">
+           </div>
+         </div>
+         <div class="slide slide8" onclick="document.getElementById('audio_play6').pause(); document.getElementById('audio_play7').play(); return false;">
+           <div class="slide-content">
+           </div>
+         </div>
+         <div class="slide slide9" onclick="document.getElementById('audio_play7').pause(); document.getElementById('audio_play8').play(); return false;">
+           <div class="slide-content">
+           </div>
+         </div>
+         <div class="slide slide10" onclick="document.getElementById('audio_play8').pause(); document.getElementById('audio_play9').play(); return false;">
+           <div class="slide-content">
+           </div>
+         </div>
+          <div class="slide slide11">
+            <div class="slide-content">
+            </div>
+          </div>
+
+         <div>
+           <div id="arrow-right" class="arrow"></div>
+
+<script>
+let sliderImages = document.querySelectorAll('.slide'),
+   arrowLeft  = document.querySelector('#arrow-left'),
+   arrowRight  = document.querySelector('#arrow-right'),
+   current = 0;
+
+   function reset(){
+     for(let i=0; i< sliderImages.length; i++){
+       sliderImages[i].style.display='none';
+
+     }
+   }
+   function startSlide(){
+     reset();
+     sliderImages[0].style.display = 'block';
+   }
+
+   // Show prew
+   function slideLeft(){
+     reset();
+     sliderImages[current -1].style.display='block';
+     current--;
+
+   }
+
+// Show next
+function slideRight(){
+  reset();
+  sliderImages[current + 1].style.display= 'block';
+  current++;
+}
+
+
+   // Left arrrow click
+   arrowLeft.addEventListener('click', function(){
+     if(current ===0){
+       current = sliderImages.length;
+     }
+     slideLeft();
+   });
+
+   // Right arrrow click
+   arrowRight.addEventListener('click', function(){
+     if(current ===sliderImages.length -1){
+       current = -1;
+     }
+     slideRight();
+   });
+
+startSlide();
+</script>
+
+<audio id="audio_play0">
+   <source src="audio/gold.mp3" preload controls>
+ </audio>
+ <audio id="audio_play1">
+    <source src="audio/saveme.mp3" preload controls>
+  </audio>
+  <audio id="audio_play2">
+     <source src="audio/betternot7.mp3" preload controls>
+   </audio>
+   <audio id="audio_play3">
+      <source src="audio/nextme.mp3" preload controls>
+    </audio>
+    <audio id="audio_play4">
+       <source src="audio/rivers4.mp3" preload controls>
+     </audio>
+     <audio id="audio_play5">
+        <source src="audio/ocean5.mp3" preload controls>
+      </audio>
+      <audio id="audio_play6">
+         <source src="audio/khalid6.mp3" preload controls>
+       </audio>
+       <audio id="audio_play7">
+          <source src="audio/intheend8.mp3" preload controls>
+        </audio>
+        <audio id="audio_play8">
+           <source src="audio/anotherlove9.mp3" preload controls>
+         </audio>
+         <audio id="audio_play9">
+            <source src="audio/sofaraway10.mp3" preload controls>
+          </audio>
+          <audio id="audio_play10">
+             <source src="audio/idgaf11.mp3" preload controls>
+           </audio>
+           <audio id="audio_play11">
+              <source src="audio/days12.mp3" preload controls>
+            </audio>
+  </body>
+</html>
