@@ -192,3 +192,16 @@
 			} else if (!isNaN(data)) {
 				numChannels = parseInt(data);
 			}
+			
+			if(data.audioSprite) {
+				var sp;
+				for(var i = data.audioSprite.length; i--; ) {
+					sp = data.audioSprite[i];
+					s._idHash[sp.id] = {src: loadItem.src, startTime: parseInt(sp.startTime), duration: parseInt(sp.duration)};
+
+					if (sp.defaultPlayProps) {
+						s._defaultPlayPropsHash[sp.id] = createjs.PlayPropsConfig.create(sp.defaultPlayProps);
+					}
+				}
+			}
+		}
