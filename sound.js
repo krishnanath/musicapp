@@ -205,3 +205,24 @@
 				}
 			}
 		}
+
+		
+		if (loadItem.id != null) {s._idHash[loadItem.id] = {src: loadItem.src}};
+		var loader = s.activePlugin.register(loadItem);
+
+		SoundChannel.create(loadItem.src, numChannels);
+
+		// return the number of instances to the user.  This will also be returned in the load event.
+		if (data == null || !isNaN(data)) {
+			loadItem.data = numChannels || SoundChannel.maxPerChannel();
+		} else {
+			loadItem.data.channels = numChannels || SoundChannel.maxPerChannel();
+		}
+
+		if (loader.type) {loadItem.type = loader.type;}
+
+		if (loadItem.defaultPlayProps) {
+			s._defaultPlayPropsHash[loadItem.src] = createjs.PlayPropsConfig.create(loadItem.defaultPlayProps);
+		}
+		return loader;
+	};
