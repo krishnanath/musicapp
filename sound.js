@@ -159,3 +159,36 @@
 		return false;
 	};
 
+
+* @method _registerSound
+	 * @param {Object} src The object to load, containing src property and optionally containing id and data.
+	 * @return {Object} An object with the modified values that were passed in, which defines the sound.
+	 * Returns false if the source cannot be parsed or no plugins can be initialized.
+	 * Returns true if the source is already loaded.
+	 * @static
+	 * @private
+	 * @since 0.6.0
+	 */
+
+	s._registerSound = function (loadItem) {
+		if (!s.initializeDefaultPlugins()) {return false;}
+
+		var details;
+		if (loadItem.src instanceof Object) {
+			details = s._parseSrc(loadItem.src);
+			details.src = loadItem.path + details.src;
+		} else {
+			details = s._parsePath(loadItem.src);
+		}
+		if (details == null) {return false;}
+		loadItem.src = details.src;
+		loadItem.type = "sound";
+
+		var data = loadItem.data;
+		var numChannels = null;
+		if (data != null) {
+			if (!isNaN(data.channels)) {
+				numChannels = parseInt(data.channels);
+			} else if (!isNaN(data)) {
+				numChannels = parseInt(data);
+			}
