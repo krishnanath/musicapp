@@ -130,3 +130,19 @@
 		}
 		return false;
 	};
+
+
+* @method registerPlugins
+	 * @param {Array} plugins An array of plugins classes to install.
+	 * @return {Boolean} Whether a plugin was successfully initialized.
+	 * @static
+	 */
+	s.registerPlugins = function (plugins) {
+		s._pluginsRegistered = true;
+		for (var i = 0, l = plugins.length; i < l; i++) {
+			if (s._registerPlugin(plugins[i])) {
+				return true;
+			}
+		}
+		return false;
+	};
