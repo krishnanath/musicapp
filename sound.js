@@ -146,3 +146,16 @@
 		}
 		return false;
 	};
+
+ * @method initializeDefaultPlugins
+	 * @returns {Boolean} True if a plugin was initialized, false otherwise.
+	 * @since 0.4.0
+	 * @static
+	 */
+	s.initializeDefaultPlugins = function () {
+		if (s.activePlugin != null) {return true;}
+		if (s._pluginsRegistered) {return false;}
+		if (s.registerPlugins([createjs.WebAudioPlugin, createjs.HTMLAudioPlugin])) {return true;}
+		return false;
+	};
+
