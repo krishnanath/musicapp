@@ -226,3 +226,43 @@
 		}
 		return loader;
 	};
+
+* @method removeSound
+	 * @param {String | Object} src The src or ID of the audio, or an Object with a "src" property, or an Object with multiple extension labeled src properties.
+	 * @param {string} basePath Set a path that will be prepended to each src when removing.
+	 * @return {Boolean} True if sound is successfully removed.
+	 * @static
+	 * @since 0.4.1
+	 */
+	s.removeSound = function(src, basePath) {
+		if (s.activePlugin == null) {return false;}
+
+		if (src instanceof Object && src.src) {src = src.src;}
+
+		var details;
+		if (src instanceof Object) {
+			details = s._parseSrc(src);
+		} else {
+			src = s._getSrcById(src).src;
+			details = s._parsePath(src);
+		}
+		if (details == null) {return false;}
+		src = details.src;
+		if (basePath != null) {src = basePath + src;}
+
+		for(var prop in s._idHash){
+			if(s._idHash[prop].src == src) {
+				delete(s._idHash[prop]);
+			}
+		}
+
+		// clear from SoundChannel, which also stops and deletes all instances
+		SoundChannel.removeSrc(src);
+
+		delete(s._preloadHash[src]);
+
+		s.activePlugin.removeSound(src);
+
+		return true;
+	};
+
