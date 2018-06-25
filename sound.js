@@ -273,3 +273,23 @@
 	 * @param {String} [id] The id passed in when the sound was registered. If one was not provided, it will be null.
 	 * @param {Number|Object} [data] Any additional data associated with the item. If not provided, it will be undefined.
 	 * @since 0.4.1
+
+s._handleLoadComplete = function(event) {
+		var src = event.target.getItem().src;
+		if (!s._preloadHash[src]) {return;}
+
+		for (var i = 0, l = s._preloadHash[src].length; i < l; i++) {
+			var item = s._preloadHash[src][i];
+			s._preloadHash[src][i] = true;
+
+			if (!s.hasEventListener("fileload")) { continue; }
+
+			var event = new createjs.Event("fileload");
+			event.src = item.src;
+			event.id = item.id;
+			event.data = item.data;
+			event.sprite = item.sprite;
+
+			s.dispatchEvent(event);
+		}
+	};
