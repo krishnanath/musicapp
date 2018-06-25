@@ -293,3 +293,9 @@ s._handleLoadComplete = function(event) {
 			s.dispatchEvent(event);
 		}
 	};
+
+* @method _handleLoadComplete
+	 * @param event A loader event.
+	 * @private
+	 * @static
+	 * @since 0.6.0
