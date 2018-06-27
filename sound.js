@@ -299,3 +299,9 @@ s._handleLoadComplete = function(event) {
 	 * @private
 	 * @static
 	 * @since 0.6.0
+* @event fileload
+	 * @param {Object} target The object that dispatched the event.
+	 * @param {String} type The event type.
+	 * @param {String} src The source of the sound that was loaded.
+	 * @param {String} [id] The id passed in when the sound was registered. If one was not provided, it will be null.
+	 * @param {Number|Object} [data] Any additional data associated with the item. If not provided, it will be undefined.
